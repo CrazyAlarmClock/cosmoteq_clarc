@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Clarc : Административный Доступ</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../admin/assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../admin/assets/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../admin/assets/css/style.min.css" rel="stylesheet">
+  <style>
+
+    .logo_main
+    {
+        position:relative;
+        background: url(../admin/assets/img/logo_transparent_lowres.png) no-repeat;
+        background-size: 150px 46px;
+        border: 0;
+        padding: 0px;
+        margin: 0px;
+        border-spacing: 0px;
+        width: 150px;
+        height: 46px;
+    }
+
+    @media only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min-device-pixel-ratio: 2)
+    {
+        .logo_main
+        {
+            position:relative;
+            background: url(../admin/assets/img/logo_transparent_normalres.png) no-repeat;
+            background-size: 150px 46px;
+            border: 0;
+            padding: 0px;
+            margin: 0px;
+            border-spacing: 0px;
+            width: 150px;
+            height: 46px;
+        }
+    }
+
+.logo-wrapper {
+   padding-left: 0px !important;
+   margin-bottom:-25px !important;
+   margin-top:-25px !important;
+}
+
+.map-container {
+   overflow:hidden;
+   padding-bottom:56.25%;
+   position:relative;
+   height:0;
+}
+
+.map-container iframe {
+   left:0;
+   top:0;
+   height:100%;
+   width:100%;
+   position:absolute;
+}
+
+  </style>
+</head>
+
+<body class="grey lighten-3">
+
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container-fluid">
+
+<!-- Brand -->
+        <a class="navbar-brand waves-effect" href="" target="_blank">
+          <strong class="blue-text"><i class="fas fa-chevron-left mr-2"></i></strong>
+        </a>
+        
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- Left -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="/adminMain">Главная
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="/adminProfile">Профиль</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="" data-toggle="modal" data-target="#centralModalLGInfoDemo">Чат</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect" href="#" data-toggle="modal" data-target="#fluidModalRightSuccessDemo">Помощь</a>
+            </li>
+          </ul>
+
+          <!-- Right -->
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+              <form th:action="@{/logout}" method="post">
+                <button type="submit" class="nav-link border border-light rounded waves-effect"><i class="fas fa-sign-out-alt mr-2"></i>Выход</button>
+              </form>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed">
+
+      <a class="logo-wrapper waves-effect" href="/adminMain">
+        <div class="logo_main"></div>
+      </a>
+
+      <div class="list-group list-group-flush">
+        <a href="/adminMain" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-chart-pie mr-3" style="width:20px;padding-left:1px;"></i>Главная</a>
+        <a href="/adminUsers" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-user mr-3" style="width:20px;padding-left:2px;"></i>Пользователи</a>
+        <a href="/adminInfopages" class="list-group-item list-group-item-action waves-effect"><i class="far fa-newspaper mr-3" style="width:20px;padding-left:1px;"></i>Инфостраницы</a>
+        <a href="/adminSources" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-paste mr-3" style="width:20px;"></i>Источники</a>
+        <a href="/adminInfopageAccess" class="list-group-item active waves-effect"><i class="fas fa-signal mr-3" style="width:20px;"></i>Статистика</a>
+        <a href="/adminSourceUpdates" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-check mr-3" style="width:20px;"></i>Обновления</a>        
+        <a href="/adminProcessingPerformance" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-cogs mr-3" style="width:20px;"></i>Обработка</a>
+        <a href="/adminAdmins" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-user-secret mr-3" style="width:20px;margin-left:-1px;"></i>Администраторы</a>
+        <a href="/adminMisc" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-tasks mr-3" style="width:20px;margin-left:-2px;"></i>Дополнительно</a>
+      </div>
+
+    </div>
+    <!-- Sidebar -->
+
+  </header>
+  <!--Main Navigation-->
+
+
+  <!--Main layout-->
+  <main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5" style="min-height:100vh;">
+
+      <!-- Heading -->
+      <div class="card mb-4">
+
+        <!--Card content-->
+        <div class="card-body d-sm-flex justify-content-between">
+
+          <h4 class="mb-2 mb-sm-0 pt-1">
+            <a href="/adminMain">Главная</a>
+            <span>/</span>
+            <span>Доступ к источникам</span>
+          </h4>
+
+          <form class="d-flex justify-content-center">
+            <!-- Default input -->
+            <input type="search" placeholder="Введите запрос" aria-label="Search" class="form-control">
+            <button class="btn btn-primary btn-sm my-0 p" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+      <!-- Heading -->
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-12 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!--Card content-->
+            <div class="card-body">
+
+              <!-- Table  -->
+              <table class="table table-hover">
+                <!-- Table head -->
+                <thead class="blue-grey lighten-4">
+                  <tr>
+                    <th>ID</th>
+                    <th>ID пользователя</th>
+                    <th>ID инфостраницы</th>
+                    <th>Статус</th>
+                    <th>Время доступа</th>
+
+                    <th></th>
+                  </tr>
+                </thead>
+                <!-- Table head -->
+
+                <!-- Table body -->
+                <tbody th:utext="${output}"></tbody>
+                <!-- Table body -->
+              </table>
+              <!-- Table  -->
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+        
+      </div>
+      <!--Grid row-->
+      
+            <!--Section: Modals-->
+            <section>
+
+
+              <!-- Central Modal Large Info-->
+              <div class="modal fade" id="centralModalLGInfoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
+                  <!--Content-->
+                  <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                      <p class="heading lead">Modal Info</p>
+
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                      </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+                      <div class="text-center">
+                        <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit
+                          iusto nulla
+                          aperiam blanditiis ad consequatur in dolores culpa, dignissimos,
+                          eius
+                          non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+                        </p>
+                      </div>
+                      <img src="https://mdbootstrap.com/wp-content/uploads/2016/11/admin-dashboard-bootstrap.jpg" alt="Material Design for Bootstrap - dashboard"
+                        class="img-fluid">
+
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer">
+                      <a role="button" class="btn btn-info">Get it now
+                        <i class="far fa-gem ml-1"></i>
+                      </a>
+                      <a role="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">No,
+                        thanks</a>
+                    </div>
+                  </div>
+                  <!--/.Content-->
+                </div>
+              </div>
+              <!-- Central Modal Large Info-->
+
+               <!-- Full Height Modal Right Success Demo-->
+              <div class="modal fade right" id="fluidModalRightSuccessDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-full-height modal-right modal-notify modal-success" role="document">
+                  <!--Content-->
+                  <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                      <p class="heading lead">Modal Success</p>
+
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                      </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+                      <div class="text-center">
+                        <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit
+                          iusto nulla
+                          aperiam blanditiis ad consequatur in dolores culpa, dignissimos,
+                          eius
+                          non possimus fugiat. Esse ratione fuga, enim, ab officiis totam.
+                        </p>
+                      </div>
+                      <ul class="list-group z-depth-0">
+                        <li class="list-group-item justify-content-between">
+                          Cras justo odio
+                          <span class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                          Dapibus ac facilisis in
+                          <span class="badge badge-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                          Morbi leo risus
+                          <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                          Cras justo odio
+                          <span class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                          Dapibus ac facilisis in
+                          <span class="badge badge-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item justify-content-between">
+                          Morbi leo risus
+                          <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                      <a role="button" class="btn btn-success">Get it now
+                        <i class="far fa-gem ml-1"></i>
+                      </a>
+                      <a role="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">No,
+                        thanks</a>
+                    </div>
+                  </div>
+                  <!--/.Content-->
+                </div>
+              </div>
+              <!-- Full Height Modal Right Success Demo-->
+
+            </section>
+            <!--Section: Modals-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small primary-color-dark darken-2 mt-4">
+
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      Copyright © 2020 <a href="/"> Clarc</a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../admin/assets/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../admin/assets/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../admin/assets/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../admin/assets/js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+</body>
+
+</html>
+
